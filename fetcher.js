@@ -74,6 +74,10 @@ export class Fetcher {
     async run() {
         const orgs = await this.getUserOrgs();
 
+        if (!orgs.length) {
+            throw new Error('Something went wrong. Organizations is not iterable. Details: ' + orgs.message);
+        }
+
         for (const org of orgs) {
             const orgName = org.login;
 
